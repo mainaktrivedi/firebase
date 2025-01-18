@@ -46,7 +46,9 @@ const ShowUser = ({ onEdit }) => {
       console.log('Create User:',resp);
       fetchUser();
     } catch (error) {
-      console.error('Error deleting user:', error);
+      if (error.response) {
+        alert('Error creating user: \n' + error.response.data.error_message);
+      }
     }
   };
 
