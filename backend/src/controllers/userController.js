@@ -53,7 +53,8 @@ async function getUser(req,res,next){
 }
 async function updateUser(req,res,next){
     try {
-        let {id,name,zipCode} = req.body;
+        let id = req.params.id; 
+        let {name,zipCode} = req.body;
         console.log('Update user for id: ' + id);
         let user = userModel.getUser(id);
         if (user.zipCode !== zipCode) {
