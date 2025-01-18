@@ -5,21 +5,14 @@ import commonUtil
 
  import serviceAccount from '../../mainak-trivedi-firebase-adminsdk-rwmkl-92ccbfac65.json' assert { type: "json" };
 
+
  admin.initializeApp({
    credential: admin.credential.cert(serviceAccount),
    databaseURL: "https://mainak-trivedi-default-rtdb.firebaseio.com" 
  });
- 
+
  const db = admin.database();
  const dbUsers = db.ref("users");
-
- 
-
-//  dbUsers.once("value", (snapshot) => {
-//    console.log("Database data:", snapshot.val());
-//  }).catch((error) => {
-//    console.error("Error reading data:", error);
-//  });
 
  
 async function saveUser(id, name, zipCode, lon, lat, timezone){
