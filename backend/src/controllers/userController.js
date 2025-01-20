@@ -61,10 +61,12 @@ async function updateUser(req,res,next){
             let coordinateData = await commonUtil.coordinateData(zipCode);
             let {lat, lon} = coordinateData.coord;
             let timezone = coordinateData.timezone;
-            let status = await userModel.updateUser(id,name,zipCode,lon,lat,timezone);
-            res.send('Update user for id: ' + id + " => " + status);
+            user = await userModel.updateUser(id,name,zipCode,lon,lat,timezone);
         }
-        res.send('No Update user for id: ' + id);
+        return res.status(200).json({
+            success: true,
+            data: user
+        });
     } catch (error) {
         return res.status(500).json({
             success: false,
